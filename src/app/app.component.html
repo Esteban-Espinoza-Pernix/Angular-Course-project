@@ -1,59 +1,6 @@
 <div class="container">
-  <h1>TODO list</h1>
-
-  <label for="addItemInput" class="form-label">
-    What would you like to do today?
-  </label>
-  <input
-    #newItem
-    class="form-control mb-1"
-    id="addItemInput"
-    placeholder="New item"
-    type="text"
-    
-  />
-
-  <div class="btn-group mb-4">
-    <div
-      class="btn btn-primary"
-    >
-      Add
-    </div>
-
-    <button
-      class="btn btn-secondary"
-    >
-      View All
-    </button>
-
-    <button
-      class="btn btn-secondary"
-   
-    >
-      View Incomplete
-    </button>
-
-    <button
-      class="btn btn-secondary"
-    >
-      View Done
-    </button>
+  <div class="row">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
   </div>
-
-  <h2>
-    {{ items.length }}
-    <span *ngIf="items.length === 1; else elseBlock">item</span>
-    <ng-template #elseBlock>items</ng-template>
-  </h2>
-
-  <ul class="list-group">
-    <li *ngFor="let item of items; let i = index" class="list-group-item mb-1">
-      <!-- <app-item
-        [item]="item"
-        (changeStatus)="changeStatus(item.done, i)"
-        (updateDescription)="updateDescription(item.description, i)"
-        (remove)="removeItem(item, i)"
-      ></app-item> -->
-    </li>
-  </ul>
 </div>
