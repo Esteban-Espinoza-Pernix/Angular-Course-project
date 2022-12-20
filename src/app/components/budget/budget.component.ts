@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Currency } from 'src/app/shared/currency';
+import { Currency } from 'src/app/shared/Currency';
 
 @Component({
   selector: 'app-budget',
