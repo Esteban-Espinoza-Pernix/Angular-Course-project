@@ -12,7 +12,10 @@
         </div>
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="number" formControlName="monto" class="form-control" ng-required="requiredValue" />
+          <input type="number" formControlName="monto"
+            class="form-control" ng-required="requiredValue"
+            min="0" oninput="validity.valid||(value='');"
+          />
           <label class="form-label" for="monto">Monto</label>
         </div>
       

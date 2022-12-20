@@ -33,6 +33,8 @@
               formControlName="amount"
               class="form-control"
               [(ngModel)]="item.amount"
+              min="0"
+              oninput="validity.valid||(value='');"
             />
             <label class="form-label" for="description">Monto</label>
           </div>
