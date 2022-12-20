@@ -1,18 +1,22 @@
 <div class="container">
   <h1>Registros</h1>
-
-  <label for="addItemInput" class="form-label">
-    What would you like to do today?
-  </label>
-  <input #newItem class="form-control mb-1" id="addItemInput" placeholder="New item" type="text"
-    (keyup.enter)="addItem(newItem.value); newItem.value = ''" />
+  
+  <ng-container *ngIf="openForm">
+    <app-edit-item 
+      [item]="newItem"
+      [isNew]="true"
+      (onSubmit)="addRegister(newItem)"
+      (onCancel)="openForm = false"
+  
+    ></app-edit-item>
+  </ng-container>
 
   <div class="btn-group mb-4">
-    <div class="btn btn-primary" (click)="addItem(newItem.value); newItem.value = ''">
+    <div class="btn btn-primary" (click)="openForm = true">
       Agregar
     </div>
 
-    <button class="btn btn-secondary" [class.active]="currentCategory == categories.all" (click)="currentCategory = categories.all">
+    <button class="btn btn-secondary" [class.active]="currentCategory == 'Todas'" (click)="currentCategory = 'Todas'">
       Ver Todos
     </button>
 

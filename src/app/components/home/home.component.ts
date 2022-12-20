@@ -8,20 +8,31 @@ import { Category } from 'src/app/shared/Category';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  title = 'Angular Todo';
   categories = Category;
+  categoryTypes = Object.values(this.categories);
+  currentCategory = "Todas";
+  openForm = false;
 
-  currentCategory = this.categories.all;
+
+  newItem : Item;
 
   allItems: Item[] = [
-    { amount: 2000, category: "Egreso genérico", description: "gasto normal" },
-    { amount: 3000, category: "transporte", description: "gasto bus" },
+    { amount: 2000, category: "Egreso Genérico", description: "gasto normal" },
+    { amount: 3000, category: "Transporte", description: "gasto bus" },
   ];
 
-  constructor() {}
+  constructor() {
+    this.newItem = {
+      id: "",
+      description : "",
+      category: "Egreso Genérico",
+      amount: 0
+    };
+    console.log(this.newItem);
+  }
 
   get items() {
-    if (this.currentCategory === this.categories.all) {
+    if (this.currentCategory === "Todas") {
       return this.allItems;
     }
     return this.allItems.filter((item) =>
@@ -36,6 +47,10 @@ export class HomeComponent {
       category: "transporte",
       amount: 2000,
     });
+  }
+
+  addRegister(item: Item) {
+    console.log("guardar", item);
   }
 
   updateDescription(new_description: string, id: number) {

@@ -16,6 +16,7 @@ export class ItemComponent {
   currency = "¢";
 
   ParseInt(value: string) : number {
+    
     return parseInt(value);
   }
 

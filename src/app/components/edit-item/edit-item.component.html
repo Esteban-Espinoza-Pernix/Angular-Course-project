@@ -1,0 +1,73 @@
+<div class="row justify-content-start mt-2 mb-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <form
+        [formGroup]="formItem"
+        (ngSubmit)="onSubmit"
+        class="ui middle form"
+      >
+        <div class="d-flex align-items-center mb-3 pb-1">
+          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+          <span *ngIf="isNew" class="h1 fw-bold mb-0">Agregar Registro</span>
+          <span *ngIf="!isNew" class="h1 fw-bold mb-0">Editar Registro</span>
+        </div>
+       
+        <!-- Category input -->
+        <div class="row">
+          <div class="col mb-4">
+            <select 
+              formControlName="category"
+              class="form-control"
+              [(ngModel)]="item.category"
+              value="{{ item.category }}">
+              <option *ngFor=" let category of categoryTypes" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+            <label class="form-label" for="divisa">Categoría</label>
+          </div>
+  
+          <div class="col mb-4">
+            <input
+              type="number"
+              formControlName="amount"
+              class="form-control"
+              [(ngModel)]="item.amount"
+            />
+            <label class="form-label" for="description">Monto</label>
+          </div>
+        </div>
+
+         <!-- Description input -->
+         <div class="form-outline mb-4">
+          <textarea #descriptionValue class="form-control"
+            formControlName="description" rows="3"
+            value="{{ item.description }}"
+            [(ngModel)]="item.description"
+            (keyup.enter)="
+              item.description = descriptionValue.value;
+            "
+          ></textarea>
+          <label class="form-label" for="description">Descripción</label>
+        </div>
+      
+        <!-- Submit button -->
+        <div class="btn-group w-100">
+          <button 
+            type="submit" 
+            class="btn bg-custom-primary btn-block mb-4 w-50"
+            (click)="onSubmit.emit()">
+            Guardar
+          </button>
+          <button
+            type="submit"
+            class="btn bg-secondary text-white btn-block mb-4 w-50"
+            (click)="onCancel.emit()">
+            Cancelar
+          </button>
+        </div>
+      
+      </form>
+    </div>
+  </div>
+</div>

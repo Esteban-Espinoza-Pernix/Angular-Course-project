@@ -22,25 +22,13 @@
     </div>
 
     <div *ngIf="editable" class="row mt-1">
-      <input #editableItem class="col form-control" placeholder="Edit item" type="number" value="{{ item.amount }}"
-        (keyup.enter)="
-          item.amount = ParseInt(editableItem.value);
-          updateDescription.emit();
-          editable = !editable
-        " />
+      <app-edit-item 
+        [item]="item"
+        [isNew]="false"
+        (onSubmit)="updateDescription"
+        (onCancel)="editable = false"
 
-      <div class="col btn-group">
-        <button class="btn btn-danger" (click)="editable = !editable">
-          Cancel
-        </button>
-        <button class="btn btn-primary" (click)="
-            item.amount = ParseInt(editableItem.value);
-            updateDescription.emit();
-            editable = !editable
-          ">
-          Save
-        </button>
-      </div>
+      ></app-edit-item>
     </div>
   </div>
 </ng-container>

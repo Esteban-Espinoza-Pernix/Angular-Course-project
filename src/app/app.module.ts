@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { AboutComponent } from './components/about/about.component';
 import { ItemComponent } from './components/item/item.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: 'full' },
@@ -41,7 +42,8 @@ const routes: Routes = [
     FooterComponent,
     BudgetComponent,
     AboutComponent,
-    ItemComponent
+    ItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
