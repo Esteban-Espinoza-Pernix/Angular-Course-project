@@ -1,49 +1,41 @@
-<div class="container pt-3">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <div class="card p-3">
-        <form
-          [formGroup]="formReg"
-          (ngSubmit)="onSubmit()"
-          class="ui middle form"
-        >
-          <div class="d-flex align-items-center mb-3 pb-1">
-            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-            <span class="h1 fw-bold mb-0">Crear Usuario</span>
-          </div>
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" formControlName="email" class="form-control" />
-            <label class="form-label" for="email">Correo</label>
-          </div>
-        
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" formControlName="password" class="form-control" />
-            <label class="form-label" for="password">Contraseña</label>
-          </div>
-        
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-block mb-4 w-100 bg-custom-primary">Crear</button>
-        
-          <!-- Register buttons -->
-          <div class="text-center">
-            <p>
-              ¿Ya tienes una cuenta?
-              <a class="ui fluid large submit blue button custom-a" routerLink="/login">
-                Entra a tu cuenta
-              </a>
-            </p>
-            <p>
-              O registrate con:
-              <button 
-                type="button" class="btn btn-link btn-floating mx-1 custom-color-icon"
-                (click)="onGoogleLogin()">
-                <i class="fab fa-google"></i>
-              </button>
-            </p>
-          </div>
-        </form>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card p-3">
+      <form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="ui middle form">
+        <div class="d-flex align-items-center mb-3 pb-1">
+          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+          <span class="h1 fw-bold mb-0">Crear Usuario</span>
+        </div>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" formControlName="email" class="form-control" />
+          <label class="form-label" for="email">Correo</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input type="password" formControlName="password" class="form-control" />
+          <label class="form-label" for="password">Contraseña</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-block mb-4 w-100 bg-custom-primary">Crear</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>
+            ¿Ya tienes una cuenta?
+            <a class="ui fluid large submit blue button custom-a" routerLink="/login">
+              Entra a tu cuenta
+            </a>
+          </p>
+          <p>
+            O registrate con:
+            <button type="button" class="btn btn-link btn-floating mx-1 custom-color-icon" (click)="onGoogleLogin()">
+              <i class="fab fa-google"></i>
+            </button>
+          </p>
+        </div>
+      </form>
     </div>
   </div>
-</div>

@@ -7,10 +7,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ItemComponent } from './components/item/item.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
+  { path: "", redirectTo: "/login", pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SigninComponent },
   { path: "presupuesto", component: BudgetComponent },
