@@ -1,0 +1,27 @@
+.bg-custom-primary {
+  background-color: #343a40;
+  color: white !important;
+}
+
+a {
+  color: white !important;
+}
+
+.custom-a {
+  color: #343a40 !important;
+}
+
+.custom-color-icon {
+  color: #ff621a;
+}
+
+.btn-outline-custom-success {
+  border: 1px solid #ff621a;
+  color: #ff621a;
+}
+
+.btn-outline-custom-success:hover {
+  border-color: #343a40;
+  background-color: #ff621a;
+  color: white;
+}

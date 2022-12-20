@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container pt-3">
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-11 col-md-6">
       <div class="card p-3">
         <form
           [formGroup]="formLogin"
@@ -24,20 +24,20 @@
           </div>
         
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Entrar</button>
+          <button type="submit" class="btn  bg-custom-primary btn-block mb-4 w-100">Entrar</button>
         
           <!-- Register buttons -->
           <div class="text-center">
             <p>
               ¿Todavía no tienes una cuenta?
-              <a class="ui fluid large submit blue button" routerLink="/signin">
+              <a class="ui fluid large submit blue button custom-a" routerLink="/signin">
                 Crea tu cuenta
               </a>
             </p>
             <p>
               O ingresa con:
               <button 
-                type="button" class="btn btn-link btn-floating mx-1"
+                type="button" class="btn btn-link btn-floating mx-1 custom-color-icon"
                 (click)="onGoogleLogin()">
                 <i class="fab fa-google"></i>
               </button>
