@@ -18,12 +18,16 @@ import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BudgetComponent } from './components/budget/budget.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
-  { path: "signin", component: SigninComponent },
-  { path: "home", component: HomeComponent }
+  { path: "signup", component: SigninComponent },
+  { path: "presupuesto", component: BudgetComponent },
+  { path: "registros", component: HomeComponent },
+  { path: "acercaDeNosotros", component: AboutComponent }
 ];
 
 @NgModule({
@@ -33,7 +37,9 @@ const routes: Routes = [
     LoginComponent,
     SigninComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    BudgetComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
