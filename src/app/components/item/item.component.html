@@ -1,0 +1,46 @@
+<ng-container *ngIf="item">
+  <div class="row">
+    <div class="col-9 row">
+      <label [for]="item.description" class="col form-check-label">
+        {{ item.description }}
+      </label>
+      <label [for]="item.category" class="col form-check-label">
+        {{ item.category }}
+      </label>
+      <label [for]="item.amount" class="col form-check-label">
+        {{ currency }} {{ item.amount }}
+      </label>
+
+    </div>
+    
+
+    <div class="col btn-group" role="group">
+      <button class="btn btn-primary" (click)="editable = !editable">
+        Edit
+      </button>
+      <button class="btn btn-danger" (click)="remove.emit()">Delete</button>
+    </div>
+
+    <div *ngIf="editable" class="row mt-1">
+      <input #editableItem class="col form-control" placeholder="Edit item" type="number" value="{{ item.amount }}"
+        (keyup.enter)="
+          item.amount = ParseInt(editableItem.value);
+          updateDescription.emit();
+          editable = !editable
+        " />
+
+      <div class="col btn-group">
+        <button class="btn btn-danger" (click)="editable = !editable">
+          Cancel
+        </button>
+        <button class="btn btn-primary" (click)="
+            item.amount = ParseInt(editableItem.value);
+            updateDescription.emit();
+            editable = !editable
+          ">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

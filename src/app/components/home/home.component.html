@@ -1,1 +1,64 @@
-<p>home works!</p>
+<div class="container">
+  <h1>Registros</h1>
+
+  <label for="addItemInput" class="form-label">
+    What would you like to do today?
+  </label>
+  <input #newItem class="form-control mb-1" id="addItemInput" placeholder="New item" type="text"
+    (keyup.enter)="addItem(newItem.value); newItem.value = ''" />
+
+  <div class="btn-group mb-4">
+    <div class="btn btn-primary" (click)="addItem(newItem.value); newItem.value = ''">
+      Agregar
+    </div>
+
+    <button class="btn btn-secondary" [class.active]="currentCategory == categories.all" (click)="currentCategory = categories.all">
+      Ver Todos
+    </button>
+
+    <button class="btn btn-secondary" [class.active]="currentCategory == categories.i1" (click)="currentCategory = categories.i1">
+      Ingresos
+    </button>
+
+    <button class="btn btn-secondary" [class.active]="currentCategory == categories.i2" (click)="currentCategory = categories.i2">
+      Egresos Genéricos
+    </button>
+
+    <button class="btn btn-secondary" [class.active]="currentCategory == categories.i3" (click)="currentCategory = categories.i3">
+      Transporte
+    </button>
+
+    <button class="btn btn-secondary" [class.active]="currentCategory == categories.i4" (click)="currentCategory = categories.i4">
+      Vivienda
+    </button>
+  </div>
+
+  <h2>
+    {{ items.length }}
+    <span *ngIf="items.length === 1; else elseBlock">item</span>
+    <ng-template #elseBlock>items</ng-template>
+  </h2>
+
+  <ul class="list-group">
+    <li class="list-group-item mb-1 bg-custom-primary">
+      <div class="row">
+        <div class="col-9 row">
+          <label class="col form-check-label">
+            Descripción
+          </label>
+          <label class="col form-check-label">
+            Categoría
+          </label>
+          <label class="col form-check-label">
+            Monto
+          </label>
+    
+        </div>
+      </div>
+    </li>
+    <li *ngFor="let item of items; let i = index" class="list-group-item mb-1">
+      <app-item [item]="item"
+        (updateDescription)="updateDescription(item.description, i)" (remove)="removeItem(item, i)"></app-item>
+    </li>
+  </ul>
+</div>

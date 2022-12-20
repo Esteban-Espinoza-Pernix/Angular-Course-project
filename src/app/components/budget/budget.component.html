@@ -1,1 +1,35 @@
-<p>budget works!</p>
+<div class="row justify-content-center">
+  <div class="col-11 col-md-6">
+    <div class="card p-3">
+      <form
+        [formGroup]="formBudget"
+        (ngSubmit)="onSubmit()"
+        class="ui middle form"
+      >
+        <div class="d-flex align-items-center mb-3 pb-1">
+          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+          <span class="h1 fw-bold mb-0">Agregar Presupuesto</span>
+        </div>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="number" formControlName="monto" class="form-control" ng-required="requiredValue" />
+          <label class="form-label" for="monto">Monto</label>
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <select formControlName="divisa" class="form-control" ng-required="requiredValue">
+            <option *ngFor=" let item of currencyTypes" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+          <label class="form-label" for="divisa">Divisa</label>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn  bg-custom-primary btn-block mb-4 w-100">Entrar</button>
+      
+      </form>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,7 @@ export class LoginComponent {
       .login(this.formLogin.value)
       .then((response) => {
         // console.log(response);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/registros']);
       })
       .catch((error) => console.error(error));
   }
@@ -33,7 +33,7 @@ export class LoginComponent {
       .google_login()
       .then((response) => {
         // console.log(response);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/registros']);
       })
       .catch((error) => console.error(error));
   }

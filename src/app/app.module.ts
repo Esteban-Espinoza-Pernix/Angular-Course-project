@@ -20,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { AboutComponent } from './components/about/about.component';
+import { ItemComponent } from './components/item/item.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
     HomeComponent,
     FooterComponent,
     BudgetComponent,
-    AboutComponent
+    AboutComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
