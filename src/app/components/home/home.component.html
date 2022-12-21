@@ -38,8 +38,8 @@
   </div>
 
   <h2>
-    {{ items.length }}
-    <span *ngIf="items.length === 1; else elseBlock">item</span>
+    {{ items?.length || 0}}
+    <span *ngIf="items?.length === 1; else elseBlock">item</span>
     <ng-template #elseBlock>items</ng-template>
   </h2>
 
@@ -62,7 +62,7 @@
     </li>
     <li *ngFor="let item of items; let i = index" class="list-group-item mb-1">
       <app-item [item]="item"
-        (updateDescription)="updateDescription(item.description, i)" (remove)="removeItem(item, i)"></app-item>
+        (updateRegister)="updateRegister(item, i)" (remove)="removeRegister(item)"></app-item>
     </li>
   </ul>
 </div>

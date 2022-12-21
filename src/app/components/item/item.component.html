@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-9 row">
       <label [for]="item.description" class="col form-check-label">
-        {{ item.description }}
+        {{ itemCopy.description }}
       </label>
       <label [for]="item.category" class="col form-check-label">
-        {{ item.category }}
+        {{ itemCopy.category }}
       </label>
       <label [for]="item.amount" class="col form-check-label">
-        {{ currency }} {{ item.amount }}
+        {{ currency }} {{ itemCopy.amount }}
       </label>
 
     </div>
@@ -16,17 +16,17 @@
 
     <div class="col btn-group" role="group">
       <button class="btn btn-primary" (click)="editable = !editable">
-        Edit
+        Editar
       </button>
-      <button class="btn btn-danger" (click)="remove.emit()">Delete</button>
+      <button class="btn btn-danger" (click)="remove.emit()">Borrar</button>
     </div>
 
     <div *ngIf="editable" class="row mt-1">
       <app-edit-item 
         [item]="item"
         [isNew]="false"
-        (onSubmit)="updateDescription"
-        (onCancel)="editable = false"
+        (onSubmit)="updateItem()"
+        (onCancel)="cancelUpdate()"
 
       ></app-edit-item>
     </div>

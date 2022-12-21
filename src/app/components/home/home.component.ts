@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import Item from 'src/app/shared/item.model';
 import { Category } from 'src/app/shared/Category';
+import { RegisterService } from 'src/app/services/register.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,20 +17,18 @@ export class HomeComponent {
 
 
   newItem : Item;
+  allItems!: any[];
 
-  allItems: Item[] = [
-    { amount: 2000, category: "Egreso Genérico", description: "gasto normal" },
-    { amount: 3000, category: "Transporte", description: "gasto bus" },
-  ];
-
-  constructor() {
+  constructor(private registerService: RegisterService, private fb: FormBuilder) {
     this.newItem = {
-      id: "",
       description : "",
       category: "Egreso Genérico",
       amount: 0
     };
-    console.log(this.newItem);
+  }
+
+  ngOnInit(): void {
+    this.fillList();
   }
 
   get items() {
@@ -40,25 +40,67 @@ export class HomeComponent {
     );
   }
 
-  addItem(new_description: string) {
-    if (!new_description) return;
-    this.allItems.push({
-      description: new_description,
-      category: "transporte",
-      amount: 2000,
+  fillList() {
+    this.registerService.getItems().subscribe((all_items) => {
+      this.allItems = all_items || [];
     });
   }
 
+  clearNewItem() {
+    this.newItem = {
+      description : "",
+      category: "Egreso Genérico",
+      amount: 0
+    };
+  }
+
   addRegister(item: Item) {
-    console.log("guardar", item);
+    if (!item) return;
+
+    //add to Backend
+    this.registerService.addItem(item)
+      .then((res) => {
+        // add to UI
+        res && this.allItems.push({...item});
+        console.log('Item added successfully');
+      })
+      .catch((error) => console.error(error)
+    );
+    
+    //close form
+    this.openForm = false;
+    // clear data
+    this.clearNewItem();
+
+    //update globals
+      
   }
 
-  updateDescription(new_description: string, id: number) {
-    this.allItems[id].description = new_description;
+  updateRegister(item: Item, id: number) {
+    this.allItems[id]= {...item};
+    //edit from Backend
+    this.registerService.updateItem(item).then(() => {
+      //edit from UI
+      this.allItems[id]= {...item};
+      console.log('Item updated successfully');
+    });
   }
 
-  removeItem(item: Item, index: number) {
-    this.allItems.splice(this.allItems.indexOf(item), 1);
+  removeRegister(item: Item) {
+    var confirmation = confirm("¿Está seguro que quiere eliminar el registro?");
+    if (confirmation) {
+        // //remove from UI
+        // this.allItems.splice(this.allItems.indexOf(item), 1);
+        //remove from Backend
+        this.registerService.deleteItem(item).then(() => {
+          //remove from UI
+          this.allItems.indexOf(item) !== -1 &&
+          this.allItems.splice(this.allItems.indexOf(item), 1);
+          console.log('Item deleted successfully');
+        });
+
+        //update globals
+    }
   }
 
 }
