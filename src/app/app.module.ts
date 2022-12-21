@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,13 +24,15 @@ import { AboutComponent } from './components/about/about.component';
 import { ItemComponent } from './components/item/item.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SigninComponent },
-  { path: "presupuesto", component: BudgetComponent },
-  { path: "registros", component: HomeComponent },
-  { path: "acercaDeNosotros", component: AboutComponent }
+  { path: "presupuesto", component: BudgetComponent, canActivate: [AuthGuard] },
+  { path: "registros", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "acercaDeNosotros", component: AboutComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -55,7 +58,8 @@ const routes: Routes = [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    AppRoutingModule
+    AppRoutingModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
