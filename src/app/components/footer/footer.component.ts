@@ -9,8 +9,8 @@ import { GlobalValues } from 'src/app/shared/global-values';
 })
 export class FooterComponent {
   budget = this.globalValues.budget.value.currency + " " + this.globalValues.budget.value.amount;
-  totalExpenses = this.globalValues.totalExpenses.value;
-  balance = this.globalValues.balance.value;
+  totalExpenses = this.globalValues.budget.value.currency + " " + this.globalValues.totalExpenses.value;
+  balance = this.globalValues.budget.value.currency + " " + this.globalValues.balance.value;
 
   budgetSubscription!: Subscription;
   totalExpensesSubscription!: Subscription;
@@ -23,10 +23,10 @@ export class FooterComponent {
       this.budget = this.globalValues.budget.value.currency + " " + this.globalValues.budget.value.amount;
     });
     this.totalExpensesSubscription = this.globalValues.totalExpensesObs.subscribe(m => {
-      this.totalExpenses = this.globalValues.totalExpenses.value;
+      this.totalExpenses = this.globalValues.budget.value.currency + " " + this.globalValues.totalExpenses.value;
     });
     this.balanceSubscription = this.globalValues.balanceObs.subscribe(m => {
-      this.balance = this.globalValues.balance.value;
+      this.balance = this.globalValues.budget.value.currency + " " + this.globalValues.balance.value;
     });
   }
 }

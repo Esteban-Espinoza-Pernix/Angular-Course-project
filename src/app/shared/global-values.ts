@@ -8,8 +8,8 @@ import Budget from "./budget.model";
 
 export class GlobalValues {
   public budget: BehaviorSubject<Budget> = new BehaviorSubject({
-    amount: 10000,
-    currency: "¢"
+    amount: 0,
+    currency: ""
   })
   public totalExpenses: BehaviorSubject<number> = new BehaviorSubject(0);
   public balance: BehaviorSubject<number> = new BehaviorSubject(0);
@@ -20,6 +20,7 @@ export class GlobalValues {
 
   public setBudget(budget: Budget) {
     this.budget.next(budget);
+    this.setBalance();
   }
 
   public addBudget(newAmount: number) {
@@ -27,7 +28,13 @@ export class GlobalValues {
     this.budget.next({
       amount: newAmount,
       currency: this.budget.value.currency
-    })
+    });
+    this.setBalance();
+  }
+
+  public setExpense(amount: number) {
+    this.totalExpenses.next(amount);
+    this.setBalance();
   }
 
   public addExpense(amount: number) {

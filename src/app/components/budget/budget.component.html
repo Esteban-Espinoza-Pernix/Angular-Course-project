@@ -12,21 +12,21 @@
         </div>
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="number" formControlName="monto"
+          <input type="number" formControlName="amount"
             class="form-control" ng-required="requiredValue"
             min="0" oninput="validity.valid||(value='');"
           />
-          <label class="form-label" for="monto">Monto</label>
+          <label class="form-label" for="amount">Monto</label>
         </div>
       
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <select formControlName="divisa" class="form-control" ng-required="requiredValue">
+          <select formControlName="currency" class="form-control" ng-required="requiredValue">
             <option *ngFor=" let item of currencyTypes" [value]="item">
               {{ item }}
             </option>
           </select>
-          <label class="form-label" for="divisa">Divisa</label>
+          <label class="form-label" for="currency">Divisa</label>
         </div>
       
         <!-- Submit button -->

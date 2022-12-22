@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Currency } from 'src/app/shared/Currency';
+import { Component } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { BudgetService } from "src/app/services/budget.service";
+import Budget from "src/app/shared/budget.model";
+import { Currency } from "src/app/shared/Currency";
+import { GlobalValues } from "src/app/shared/global-values";
 
 @Component({
-  selector: 'app-budget',
-  templateUrl: './budget.component.html',
-  styleUrls: ['./budget.component.css']
+  selector: "app-budget",
+  templateUrl: "./budget.component.html",
+  styleUrls: ["./budget.component.css"],
 })
 export class BudgetComponent {
   formBudget: FormGroup;
@@ -15,15 +18,26 @@ export class BudgetComponent {
 
   currencyTypes = Object.values(this.currency);
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private budgetService: BudgetService,
+    private globalValues: GlobalValues
+  ) {
     this.formBudget = new FormGroup({
-      monto: new FormControl(),
-      divisa: new FormControl(),
+      amount: new FormControl(),
+      currency: new FormControl(),
     });
   }
 
   onSubmit() {
-    // agregar lógica
-    console.log("submit");
+    let auxBudget: Budget = this.formBudget.value as Budget;
+    this.budgetService
+      .addBudget(auxBudget)
+      .then(() => {
+        console.log("Successfully saved");
+        this.globalValues.setBudget(auxBudget);
+        this.router.navigate(["/registros"]);
+      })
+      .catch((err) => console.log(err));
   }
 }
