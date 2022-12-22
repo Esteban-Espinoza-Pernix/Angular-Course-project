@@ -19,6 +19,7 @@ export class GlobalValues {
   public balanceObs = this.balance.asObservable();
 
   public setBudget(budget: Budget) {
+    if(!budget) return;
     this.budget.next(budget);
     this.setBalance();
   }
@@ -34,6 +35,7 @@ export class GlobalValues {
   }
 
   public setExpense(amount: number) {
+    if(!amount) return;
     this.totalExpenses.next(amount);
     this.setBalance();
   }

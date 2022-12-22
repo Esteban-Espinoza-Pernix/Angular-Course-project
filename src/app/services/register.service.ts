@@ -28,9 +28,12 @@ export class RegisterService {
     return collectionData(docRef, { idField: 'id' });
   }
 
-  getItem(id_item: string) {
-    const docRef = doc(this.firestore, 'Items', id_item);
-    return getDoc(docRef);
+  getItem(id_item: string | undefined) {
+    if(id_item != undefined) {
+      const docRef = doc(this.firestore, 'Items', id_item);
+      return getDoc(docRef);
+    }
+    return null;
   }
 
   addItem(newItem: Item) {

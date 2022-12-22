@@ -89,17 +89,44 @@ export class HomeComponent {
 
   updateRegister(item: Item, id: number) {
     this.allItems[id] = { ...item };
-    //edit from Backend
-    this.registerService.updateItem(item).then(() => {
-      //edit from UI
-      this.allItems[id] = { ...item };
-      console.log("Item updated successfully");
-    });
+    // get old value
+    this.registerService.getItem(item.id)?.then((oldItem) => {
+      const oldAmount = oldItem.get("amount");
+      const oldCategory = oldItem.get("category");
 
-    //update globals
-    // item.category == this.categories.i1
-    // ? this.globalValues.addBudget(-1 * item.amount)
-    // : this.globalValues.addExpense(-1 * item.amount);
+      //edit from Backend
+      this.registerService.updateItem(item).then(() => {
+        //edit from UI
+        this.allItems[id] = { ...item };
+        console.log("Item updated successfully");
+      });
+
+      //update globals
+      console.log("entra",oldCategory === item.category, oldCategory , item.category);
+      if(oldCategory === item.category) {
+        if(oldAmount !== item.amount) {
+          if(item.category == this.categories.i1) {
+            this.globalValues.addBudget(-1 * oldAmount);
+            this.globalValues.addBudget(item.amount);
+          }
+          else {
+            this.globalValues.addExpense(-1 * oldAmount);
+            this.globalValues.addExpense(item.amount);
+          }
+        }
+      }
+      else {
+        if(item.category == this.categories.i1) {
+          this.globalValues.addExpense(-1 * oldAmount);
+          this.globalValues.addBudget(item.amount);
+        }
+        else {
+          this.globalValues.addBudget(-1 * oldAmount);
+          this.globalValues.addExpense(item.amount);
+        }
+      }
+    })
+    .catch((error) => console.error(error));
   }
 
   removeRegister(item: Item) {
