@@ -1,6 +1,6 @@
 <ng-container *ngIf="item">
   <div class="row">
-    <div class="col-9 row">
+    <div class="col-12 col-md-9 row">
       <label [for]="item.description" class="col form-check-label">
         {{ itemCopy.description }}
       </label>
@@ -12,7 +12,6 @@
       </label>
 
     </div>
-    
 
     <div class="col btn-group" role="group">
       <button class="btn btn-primary" (click)="editable = !editable">

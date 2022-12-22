@@ -38,14 +38,14 @@ export class RegisterService {
     return addDoc(ItemRef, newItem);
   }
 
-  updateItem(Item: Item) {
-    console.log(`Update Item.id: ${Item.id}`);
-    const ItemRef = doc(this.firestore, `Items/${Item.id}`);
-    return setDoc(ItemRef, { ...Item });
+  updateItem(item: Item) {
+    console.log(`Update Item.id: ${item.id}`);
+    const itemRef = doc(this.firestore, `Items/${item.id}`);
+    return setDoc(itemRef, { ...item });
   }
 
-  deleteItem(Item: Item) {
-    const ItemRef = doc(this.firestore, `Items/${Item.id}`);
+  deleteItem(itemId: string | undefined) {
+    const ItemRef = doc(this.firestore, `Items/${itemId}`);
     return deleteDoc(ItemRef);
   }
 }

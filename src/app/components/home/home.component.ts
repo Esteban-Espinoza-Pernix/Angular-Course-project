@@ -69,6 +69,7 @@ export class HomeComponent {
       .addItem(item)
       .then((res) => {
         // add to UI
+        console.log({res, item});
         res && this.allItems.push({ ...item });
         console.log("Item added successfully");
       })
@@ -80,6 +81,7 @@ export class HomeComponent {
     this.clearNewItem();
 
     //update globals
+    console.log("=>", item.amount,item.category, this.categories.i1, item.category == this.categories.i1)
     item.category == this.categories.i1
       ? this.globalValues.addBudget(item.amount)
       : this.globalValues.addExpense(item.amount);
@@ -106,7 +108,7 @@ export class HomeComponent {
       //remove from UI
       // this.allItems.splice(this.allItems.indexOf(item), 1);
       //remove from Backend
-      this.registerService.deleteItem(item).then(() => {
+      this.registerService.deleteItem(item.id).then(() => {
         //remove from UI
         this.allItems.indexOf(item) !== -1 &&
           this.allItems.splice(this.allItems.indexOf(item), 1);

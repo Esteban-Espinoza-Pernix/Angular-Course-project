@@ -24,6 +24,7 @@ export class GlobalValues {
   }
 
   public addBudget(newAmount: number) {
+    console.log("add budget");
     newAmount = this.budget.value.amount + newAmount;
     this.budget.next({
       amount: newAmount,
@@ -38,6 +39,7 @@ export class GlobalValues {
   }
 
   public addExpense(amount: number) {
+    console.log("add expense");
     this.totalExpenses.next(this.totalExpenses.value + amount);
     this.setBalance();
   }
@@ -46,7 +48,7 @@ export class GlobalValues {
     this.balance.next(this.budget.value.amount - this.totalExpenses.value);
   }
 
-  private resetValues() {
+  public resetValues() {
     this.budget.next({
       amount: 0,
       currency: ""

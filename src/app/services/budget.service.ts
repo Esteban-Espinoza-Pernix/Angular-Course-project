@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collectionData, addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { collectionData, addDoc, collection, doc, Firestore, setDoc, deleteDoc } from '@angular/fire/firestore';
 import Budget from '../shared/budget.model';
 
 @Injectable({
@@ -23,5 +23,10 @@ export class BudgetService {
     console.log(`Update budget.id: ${budget.id}`);
     const budgetRef = doc(this.firestore, `Budgets/${budget.id}`);
     return setDoc(budgetRef, { ...budget });
+  }
+
+  deleteBudget(budgetId: string | undefined) {
+    const ItemRef = doc(this.firestore, `Budgets/${budgetId}`);
+    return deleteDoc(ItemRef);
   }
 }

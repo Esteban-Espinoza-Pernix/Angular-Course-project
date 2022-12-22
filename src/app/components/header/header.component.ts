@@ -17,7 +17,7 @@ export class HeaderComponent {
 
   onLogout() {
     this.userService.logout()
-      .then(() => this.router.navigate(['login']))
+      .then(() => this.router.navigate(['/login']))
       .catch((_error) => this.alert.showAlert('Ocurrio un error, intentalo de nuevo.'))
 
   }

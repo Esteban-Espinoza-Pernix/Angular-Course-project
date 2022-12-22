@@ -13,6 +13,8 @@ import { GlobalValues } from "./shared/global-values";
 export class AppComponent {
   title = "Angular-Course-project";
   items = [];
+  loadBudget = true;
+  loadItems = true;
 
   constructor(
     private router: Router,
@@ -24,15 +26,26 @@ export class AppComponent {
   ngOnInit(): void {
     //load budget
     this.budgetService.getBudgets().subscribe((budgets) => {
-      if (budgets.length) {
+      if (this.loadBudget) {
+        console.log("load budget");
+        this.loadBudget = false;
         this.globalValues.setBudget(budgets[budgets.length - 1] as Budget);
 
         this.registerService.getItems().subscribe((all_items) => {
-          let total = 0;
-          all_items.forEach(item => {
-            total +=item['amount'];
-          });
-          this.globalValues.setExpense(total);
+          if(this.loadItems) {
+            console.log("load items");
+            let totalExpenses = 0;
+            let totalBudgets = 0;
+            this.loadItems = false;
+            all_items.forEach(item => {
+              // total +=item['amount'];
+              item["category"] == "Ingreso"
+                ? totalBudgets += item['amount']
+                : totalExpenses += item['amount']
+            });
+            this.globalValues.setExpense(totalExpenses);
+            this.globalValues.addBudget(totalBudgets);
+          }
         });
       }
     });
