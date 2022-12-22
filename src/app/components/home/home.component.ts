@@ -3,6 +3,7 @@ import Item from 'src/app/shared/item.model';
 import { Category } from 'src/app/shared/Category';
 import { RegisterService } from 'src/app/services/register.service';
 import { FormBuilder } from '@angular/forms';
+import { GlobalValues } from 'src/app/shared/global-values';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent {
   newItem : Item;
   allItems!: any[];
 
-  constructor(private registerService: RegisterService, private fb: FormBuilder) {
+  constructor(private registerService: RegisterService, private fb: FormBuilder, private globalValues: GlobalValues) {
     this.newItem = {
       description : "",
       category: "Egreso Genérico",
@@ -54,6 +55,8 @@ export class HomeComponent {
     };
   }
 
+  // DB functions
+
   addRegister(item: Item) {
     if (!item) return;
 
@@ -73,7 +76,7 @@ export class HomeComponent {
     this.clearNewItem();
 
     //update globals
-      
+    this.globalValues.addExpense(item.amount);
   }
 
   updateRegister(item: Item, id: number) {
